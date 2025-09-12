@@ -8,8 +8,14 @@ import javax.imageio.ImageIO;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import com.google.zxing.BinaryBitmap;
 import com.google.zxing.LuminanceSource;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -26,8 +32,17 @@ public class AadharParser {
         BufferedImage bufferedImage = ImageIO.read(aadharFile);
 
         LuminanceSource src = new BufferedImageLuminanceSource(bufferedImage);
-    
-        String xmlText = "<?xml version=\"1.0\" encoding=\"utf-8\"?> <printletterbarcodedata uid=\"436108442955\" name=\"parth shashikant salunke\" gender=\"m\" yob=\"2008\" gname=\"shraddha shashikant salunke\" co=\"s/o: shashikant salunke\" house=\"406/b vaishnav sadan\" street=\"s.b pawar marg\" loc=\"currey road\" vtc=\"delisle road\" po=\"delisle road\" dist=\"mumbai\" subdist=\"mumbai\" state=\"maharashtra\" pc=\"400013\" dob=\"23/02/2008\"/>";
+        BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(src));
+
+        String xmlText = "";
+
+        try {
+            Result result = new MultiFormatReader().decode(bitmap);
+            xmlText = result.getText();
+        }
+        catch(NotFoundException e){
+            System.out.println("QR NAHI MILA");
+        }
 
         // Parse XML string using an xml Parser
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -36,7 +51,26 @@ public class AadharParser {
 
         // Get root element
         Element root = doc.getDocumentElement();
-        
-
+        System.out.println(root.getAttribute("uid"));
+        System.out.println(root.getAttribute("name"));
+        System.out.println(xmlText);
     }
 }
+
+/* Data to fetch 
+ uid="436108442955" 
+ name="Parth Shashikant Salunke" 
+ gender="M" 
+ yob="2008" 
+ gname="Shraddha Shashikant Salunke" 
+ co="S/O: Shashikant Salunke" 
+ house="406/B Vaishnav Sadan" 
+ street="S.B Pawar Marg" 
+ loc="Currey Road" 
+ vtc="Delisle Road" 
+ po="Delisle Road" 
+ dist="Mumbai" 
+ subdist="Mumbai" 
+ state="Maharashtra" pc="400013" 
+ dob="23/02/2008"
+ */
