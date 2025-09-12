@@ -1,7 +1,10 @@
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -16,6 +19,9 @@ public class AadharParser {
         
         // Image Scanner Integration
 
+        // Converting .png .jpeg .jpg into a Buffered Image
+        File aadharFile = new File("aadharSample.jpeg");
+        BufferedImage bufferedImage = ImageIO.read(aadharFile);
 
         String xmlText = "<?xml version=\"1.0\" encoding=\"utf-8\"?> <printletterbarcodedata uid=\"436108442955\" name=\"parth shashikant salunke\" gender=\"m\" yob=\"2008\" gname=\"shraddha shashikant salunke\" co=\"s/o: shashikant salunke\" house=\"406/b vaishnav sadan\" street=\"s.b pawar marg\" loc=\"currey road\" vtc=\"delisle road\" po=\"delisle road\" dist=\"mumbai\" subdist=\"mumbai\" state=\"maharashtra\" pc=\"400013\" dob=\"23/02/2008\"/>";
 
