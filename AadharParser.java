@@ -1,7 +1,6 @@
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
+
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
@@ -18,8 +17,7 @@ import com.google.zxing.common.HybridBinarizer;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
+
 
 public class AadharParser {
     
