@@ -52,6 +52,8 @@ public class AadharParser {
         System.out.println(root.getAttribute("uid"));
         System.out.println(root.getAttribute("name"));
         System.out.println(xmlText);
+        System.out.println(root.getAttribute("yob"));
+
     }
 }
 
