@@ -26,7 +26,7 @@ public class AadharParser {
         // Image Scanner Integration
 
         // Converting .png .jpeg .jpg into a Buffered Image
-        File aadharFile = new File("aadharSample.jpeg");
+        File aadharFile = new File("Add Your Image Here");
         BufferedImage bufferedImage = ImageIO.read(aadharFile);
 
         LuminanceSource src = new BufferedImageLuminanceSource(bufferedImage);
@@ -39,7 +39,7 @@ public class AadharParser {
             xmlText = result.getText();
         }
         catch(NotFoundException e){
-            System.out.println("QR NAHI MILA");
+            System.out.println("QR Not Found");
         }
 
         // Parse XML string using an xml Parser
@@ -56,21 +56,3 @@ public class AadharParser {
 
     }
 }
-
-/* Data to fetch 
- uid="436108442955" 
- name="Parth Shashikant Salunke" 
- gender="M" 
- yob="2008" 
- gname="Shraddha Shashikant Salunke" 
- co="S/O: Shashikant Salunke" 
- house="406/B Vaishnav Sadan" 
- street="S.B Pawar Marg" 
- loc="Currey Road" 
- vtc="Delisle Road" 
- po="Delisle Road" 
- dist="Mumbai" 
- subdist="Mumbai" 
- state="Maharashtra" pc="400013" 
- dob="23/02/2008"
- */
