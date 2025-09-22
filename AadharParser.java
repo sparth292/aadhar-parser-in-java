@@ -51,7 +51,6 @@ public class AadharParser {
         Element root = doc.getDocumentElement();
         System.out.println(root.getAttribute("uid"));
         System.out.println(root.getAttribute("name"));
-        System.out.println(xmlText);
         System.out.println(root.getAttribute("yob"));
 
     }
